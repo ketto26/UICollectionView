@@ -14,7 +14,6 @@
 		0CAB7D112AF5944F005D5CCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CAB7D0F2AF5944F005D5CCF /* LaunchScreen.storyboard */; };
 		0CAB7D1D2AF5A955005D5CCF /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAB7D1C2AF5A955005D5CCF /* MovieModel.swift */; };
 		0CAB7D212AF5AB37005D5CCF /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAB7D202AF5AB37005D5CCF /* MovieCell.swift */; };
-		0CAB7D232AF5BBCB005D5CCF /* ViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAB7D222AF5BBCB005D5CCF /* ViewController+CollectionView.swift */; };
 		0CAB7D252AF5D235005D5CCF /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAB7D242AF5D235005D5CCF /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +27,6 @@
 		0CAB7D122AF5944F005D5CCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CAB7D1C2AF5A955005D5CCF /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		0CAB7D202AF5AB37005D5CCF /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
-		0CAB7D222AF5BBCB005D5CCF /* ViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		0CAB7D242AF5D235005D5CCF /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,7 +63,6 @@
 				0CAB7D042AF5944E005D5CCF /* AppDelegate.swift */,
 				0CAB7D062AF5944E005D5CCF /* SceneDelegate.swift */,
 				0CAB7D082AF5944E005D5CCF /* ViewController.swift */,
-				0CAB7D222AF5BBCB005D5CCF /* ViewController+CollectionView.swift */,
 				0CAB7D242AF5D235005D5CCF /* MovieDetailViewController.swift */,
 				0CAB7D1C2AF5A955005D5CCF /* MovieModel.swift */,
 				0CAB7D202AF5AB37005D5CCF /* MovieCell.swift */,
@@ -147,7 +144,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CAB7D1D2AF5A955005D5CCF /* MovieModel.swift in Sources */,
-				0CAB7D232AF5BBCB005D5CCF /* ViewController+CollectionView.swift in Sources */,
 				0CAB7D092AF5944E005D5CCF /* ViewController.swift in Sources */,
 				0CAB7D052AF5944E005D5CCF /* AppDelegate.swift in Sources */,
 				0CAB7D252AF5D235005D5CCF /* MovieDetailViewController.swift in Sources */,

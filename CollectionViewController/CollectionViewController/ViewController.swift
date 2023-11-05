@@ -46,10 +46,9 @@ class ViewController: UIViewController {
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 10
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = UIColor(red: 26/255, green: 34/255, blue: 50/255, alpha: 1)
         return collectionView
     }()
     
@@ -64,6 +63,7 @@ class ViewController: UIViewController {
         mainStackView.addArrangedSubview(collectionView)
         
         navBarSetup()
+        setupCollectionView()
         setupMainStackViewConstraints()
         setupMainLabelConstraints()
         setupCollectionViewConstraints()
@@ -79,14 +79,14 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
-        
     }
+    
 
     // MARK: - Setup Constraints
     private func setupMainStackViewConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 0),
-            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20),
+            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
     
     private func setupCollectionViewConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: mainStackView.topAnchor, constant: 60),
+            collectionView.topAnchor.constraint(equalTo: mainStackView.topAnchor, constant: 40),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: mainStackView.bottomAnchor)
@@ -109,3 +109,38 @@ class ViewController: UIViewController {
     }
 }
 
+    // MARK: - Extensions and Delegates
+
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        movieData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let currentMovie = movieData[indexPath.row]
+        
+        
+        cell.movieImage.image = currentMovie.movieImage
+        cell.rateLabel.text = "\(currentMovie.rate)"
+        cell.movieNameLabel.text = currentMovie.name
+        cell.genreLabel.text = "\(currentMovie.genre)"
+        return cell
+    }
+     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailsPage = MovieDetailViewController()
+        detailsPage.movieData = movieData[indexPath.row]
+        navigationController?.pushViewController(detailsPage, animated: true)
+    }
+    
+    
+}
+
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 165, height: 278)
+    }
+}

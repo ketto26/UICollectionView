@@ -1,2 +1,0 @@
-
-CollectionView Task

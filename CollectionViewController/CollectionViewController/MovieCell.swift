@@ -12,15 +12,15 @@ import UIKit
 class MovieCell: UICollectionViewCell {
     
     // MARK: - Setup Properties
-     let movieImage: UIImageView = {
+    let movieImage: UIImageView = {
         let movieImage = UIImageView()
         movieImage.contentMode = .scaleAspectFit
         movieImage.translatesAutoresizingMaskIntoConstraints = false
         return movieImage
     }()
-
     
-     let rateLabel: UILabel = {
+    
+    let rateLabel: UILabel = {
         let rateLabel = UILabel()
         rateLabel.frame.size = CGSize(width: 33, height: 23)
         rateLabel.backgroundColor = .orange
@@ -30,7 +30,15 @@ class MovieCell: UICollectionViewCell {
         return rateLabel
     }()
     
-     let movieNameLabel: UILabel = {
+    let favouriteButton: UIButton = {
+        let favouriteButton = UIButton()
+        favouriteButton.setImage(UIImage(named: "heart"), for: .normal)
+        favouriteButton.addTarget(self, action: #selector(favouriteButtonClicked), for: .touchUpInside)
+        favouriteButton.translatesAutoresizingMaskIntoConstraints = false
+        return favouriteButton
+    }()
+    
+    let movieNameLabel: UILabel = {
         let movieNameLabel = UILabel()
         movieNameLabel.textColor = .white
         movieNameLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
@@ -39,7 +47,7 @@ class MovieCell: UICollectionViewCell {
         return movieNameLabel
     }()
     
-     let genreLabel: UILabel = {
+    let genreLabel: UILabel = {
         let genreLabel: UILabel = UILabel()
         genreLabel.font = UIFont(name: "Helvetica", size: 14)
         genreLabel.textColor = .systemGray4
@@ -48,7 +56,7 @@ class MovieCell: UICollectionViewCell {
         return genreLabel
     }()
     
-   
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,28 +72,35 @@ class MovieCell: UICollectionViewCell {
     // MARK: - Setup Ui
     private func setupUI() {
         contentView.addSubview(movieImage)
+        contentView.addSubview(favouriteButton)
         contentView.addSubview(rateLabel)
         contentView.addSubview(movieNameLabel)
         contentView.addSubview(genreLabel)
     }
     
+    // MARK: - Private Methods
+    @objc func favouriteButtonClicked() {
+        favouriteButton.setImage(UIImage(named: "redHeart"), for: .normal)
+    }
     
     // MARK: - Setup Constraints
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            movieImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            movieImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            movieImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 15),
+            movieImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -20),
             
+            favouriteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            favouriteButton.leftAnchor.constraint(equalTo: movieImage.leftAnchor, constant: 20),
             
-            rateLabel.topAnchor.constraint(equalTo: movieImage.topAnchor, constant: 1),
-            rateLabel.rightAnchor.constraint(equalTo: movieImage.rightAnchor, constant: -1),
+            rateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            rateLabel.rightAnchor.constraint(equalTo: movieImage.rightAnchor, constant: -50),
             
-            movieNameLabel.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 1),
+            movieNameLabel.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: -50),
             movieNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 1),
             
             genreLabel.topAnchor.constraint(equalTo: movieNameLabel.bottomAnchor, constant: 1),
             genreLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 1),
-
+            
         ])
     }
     
