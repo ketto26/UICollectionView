@@ -25,7 +25,7 @@ class MovieDetailViewController: UIViewController {
     private var rateStackView: UIStackView = {
         let rateStackView = UIStackView()
         rateStackView.axis = .vertical
-        rateStackView.spacing = 2
+        rateStackView.spacing = 1
         rateStackView.alignment = .center
         rateStackView.translatesAutoresizingMaskIntoConstraints = false
         return rateStackView
@@ -36,6 +36,7 @@ class MovieDetailViewController: UIViewController {
     private var iMDBLabel: UILabel = {
         let iMDBLabel = UILabel()
         iMDBLabel.text = "IMDB"
+        iMDBLabel.font = UIFont(name: "Helvetica", size: 14)
         iMDBLabel.textColor = .systemGray3
         iMDBLabel.translatesAutoresizingMaskIntoConstraints = false
         return iMDBLabel
@@ -46,6 +47,7 @@ class MovieDetailViewController: UIViewController {
         movieInfoStackView.axis = .vertical
         movieInfoStackView.spacing = 16
         movieInfoStackView.alignment = .leading
+        movieInfoStackView.backgroundColor = UIColor(red: 26/255, green: 34/255, blue: 50/255, alpha: 1)
         movieInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         return movieInfoStackView
     }()
@@ -205,6 +207,12 @@ class MovieDetailViewController: UIViewController {
         setupDirectorValueLabel()
         setupCastValueLabel()
         setupSelectButtonConstraints()
+        setupCertificateValueLabelConstraints()
+        setupRuntimeValueLabelConstraints()
+        setupReleaseValueLabelConstraints()
+        setupGenreValueLabelConstraints()
+        setupDirectorValueLabelConstraints()
+        setupCastValueLabelConstraints()
     }
     
     
@@ -212,7 +220,7 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - Setup View
     private func setupView() {
-        view.backgroundColor = UIColor(red: 31/255, green: 41/255, blue: 61/255, alpha: 0.7)
+        view.backgroundColor = UIColor(red: 31/255, green: 41/255, blue: 61/255, alpha: 1)
         
         
         view.addSubview(movieImage)
@@ -261,6 +269,7 @@ class MovieDetailViewController: UIViewController {
     private func setupRateLabel() {
         rateLabel.text = "\(movieData?.rate ?? 0)"
         rateLabel.textColor = .white
+        rateLabel.font = UIFont(name: "Helvetica-Bold", size: 20)
         rateLabel.translatesAutoresizingMaskIntoConstraints = false
         rateLabel.textAlignment = .center
     }
@@ -270,7 +279,7 @@ class MovieDetailViewController: UIViewController {
         movieDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         movieDescriptionTextView.textColor = .white
         movieDescriptionTextView.font = UIFont(name: "Helvetica", size: 14)
-        movieDescriptionTextView.backgroundColor = UIColor(red: 31/255, green: 41/255, blue: 61/255, alpha: 1)
+        movieDescriptionTextView.backgroundColor = UIColor(red: 26/255, green: 34/255, blue: 50/255, alpha: 1)
     }
     
     private func setupCertificateValueLabel() {
@@ -306,6 +315,7 @@ class MovieDetailViewController: UIViewController {
     private func setupCastValueLabel() {
         castValueLabel.text = movieData?.cast
         castValueLabel.textColor = .white
+        
         castLabel.translatesAutoresizingMaskIntoConstraints = false
         castValueLabel.font = UIFont(name: "Helvetica", size: 14)
     }
@@ -334,7 +344,7 @@ class MovieDetailViewController: UIViewController {
     private func setupRateStackViewConstraints() {
         NSLayoutConstraint.activate([
             rateStackView.topAnchor.constraint(equalTo: movieImage.bottomAnchor),
-            rateStackView.heightAnchor.constraint(equalToConstant: 70),
+            rateStackView.heightAnchor.constraint(equalToConstant: 80),
             rateStackView.leftAnchor.constraint(equalTo: stackView.leftAnchor),
             rateStackView.rightAnchor.constraint(equalTo: stackView.rightAnchor),
         ])
@@ -354,14 +364,14 @@ class MovieDetailViewController: UIViewController {
             movieInfoStackView.topAnchor.constraint(equalTo: rateStackView.bottomAnchor, constant: 16),
             movieInfoStackView.leftAnchor.constraint(equalTo: view.leftAnchor),
             movieInfoStackView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            movieInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90)
+            movieInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -140)
         ])
     }
     
     private func setupMovieDetailsStackViewConstraints() {
         NSLayoutConstraint.activate([
             movieDetailsStackView.topAnchor.constraint(equalTo: movieDescriptionTextView.bottomAnchor, constant: 1),
-            movieDetailsStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            movieDetailsStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             movieDetailsStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             movieDetailsStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200)
         ])
@@ -369,10 +379,47 @@ class MovieDetailViewController: UIViewController {
 
     private func setupSelectButtonConstraints() {
         NSLayoutConstraint.activate([
-            selectButton.topAnchor.constraint(equalTo: movieDetailsStackView.bottomAnchor, constant: 70),
-            selectButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -56),
+            selectButton.topAnchor.constraint(equalTo: movieDetailsStackView.bottomAnchor, constant: 80),
+            selectButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
             selectButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             selectButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16)
+        ])
+    }
+    
+    private func setupCertificateValueLabelConstraints() {
+        NSLayoutConstraint.activate([
+            certificateValueLabel.leftAnchor.constraint(equalTo: movieDetailsStackView.leftAnchor, constant: 110),
+        ])
+    }
+    
+    private func setupRuntimeValueLabelConstraints() {
+        NSLayoutConstraint.activate([
+            runtimeValueLabel.leftAnchor.constraint(equalTo: movieDetailsStackView.leftAnchor, constant: 110),
+        ])
+    }
+    
+    private func setupReleaseValueLabelConstraints() {
+        NSLayoutConstraint.activate([
+            releaseValueLabel.leftAnchor.constraint(equalTo: movieDetailsStackView.leftAnchor, constant: 110),
+        ])
+    }
+    
+    private func setupGenreValueLabelConstraints() {
+        NSLayoutConstraint.activate([
+            genreValueLabel.leftAnchor.constraint(equalTo: movieDetailsStackView.leftAnchor, constant: 110),
+        ])
+    }
+    
+    private func setupDirectorValueLabelConstraints() {
+        NSLayoutConstraint.activate([
+            directorValueLabel.leftAnchor.constraint(equalTo: movieDetailsStackView.leftAnchor, constant: 110),
+        ])
+    }
+    
+    private func setupCastValueLabelConstraints() {
+        NSLayoutConstraint.activate([
+            castValueLabel.leftAnchor.constraint(equalTo: movieDetailsStackView.leftAnchor, constant: 110),
+            castValueLabel.rightAnchor.constraint(equalTo: movieDetailsStackView.rightAnchor, constant: -10),
         ])
     }
 }
